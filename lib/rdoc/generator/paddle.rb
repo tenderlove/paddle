@@ -10,6 +10,8 @@ class RDoc::Generator::Paddle
 
   TEMPLATE_DIR = File.expand_path(
     File.join(File.dirname(__FILE__), '..', '..', 'templates'))
+  IMAGE_DIR = File.expand_path(
+    File.join(File.dirname(__FILE__), '..', '..', 'images'))
 
   class << self
     alias :for :new
@@ -37,6 +39,7 @@ class RDoc::Generator::Paddle
     emit_opf
     emit_toc
     emit_classfiles
+    copy_images
   end
 
   def class_dir
@@ -52,6 +55,13 @@ class RDoc::Generator::Paddle
   end
 
   private
+  def copy_images
+    imgs = File.join @odir, 'images'
+    FileUtils.mkdir_p imgs
+
+    FileUtils.cp File.join(IMAGE_DIR, 'ruby.png'), imgs
+  end
+
   def emit_meta_inf
     meta_inf = File.join @odir, 'META-INF'
     FileUtils.mkdir_p meta_inf

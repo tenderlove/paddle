@@ -12,7 +12,7 @@
         <span class="class">
           <%= klass.type.capitalize %>
           <a href="<%= klass.path %>">
-            <%= klass.name %>
+            <%= klass.full_name %>
           </a>
           <% if klass.superclass %>
             inherits from
@@ -34,5 +34,8 @@
         </span>
       <% end %>
     </h1>
+    <% if klass.description && !klass.description.empty? %>
+      <%= klass.description %>
+    <% end %>
   </body>
 </html>
