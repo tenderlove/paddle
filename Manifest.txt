@@ -3,7 +3,6 @@ CHANGELOG.rdoc
 Manifest.txt
 README.rdoc
 Rakefile
-bin/paddle
 lib/images/ruby.png
 lib/paddle.rb
 lib/rdoc/discover.rb
