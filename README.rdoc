@@ -11,6 +11,7 @@ book.  The epub book can then be imported to iBooks for reading on iPad!
 
 * Converts RDoc to epub format
 * Sometimes it doesn't escape everything properly
+* Links aren't working yet
 
 == SYNOPSIS:
 

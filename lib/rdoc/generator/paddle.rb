@@ -53,7 +53,7 @@ class RDoc::Generator::Paddle
   end
 
   def identifier
-    'FIXME'
+    MD5.hexdigest title
   end
 
   private
