@@ -17,6 +17,9 @@
         margin-bottom: 0.5em;
         margin-left: 1.5em;
       }
+      dt.name {
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -49,7 +52,7 @@
     </h1>
     <% if klass.description && !klass.description.empty? %>
       <div id="description" class="alt">
-        <%= klass.description.strip.gsub(/<pre>\s*<\/pre>/, '') %>
+        <%= h klass.description %>
       </div>
     <% end %>
 
@@ -59,9 +62,9 @@
       <% klass.constants.sort_by { |x| x.name }.each do |const| %>
         <dl>
           <dt class="name">
-            <%= const.name %>
+            <%= h const.name %>
           </dt>
-          <dd class="explanation"><%= const.description %></dd>
+          <dd class="explanation"><%= h const.description %></dd>
         </dl>
       <% end %>
     <% end %>
@@ -72,10 +75,10 @@
       <% klass.attributes.sort_by { |x| x.name }.each do |attr| %>
         <dl>
           <dt class="name">
-            <%= attr.name %>
+            <%= h attr.name %>
             <span class="optional"><%= attr.rw %></span>
           </dt>
-          <dd class="explanation"><%= attr.description.strip %></dd>
+          <dd class="explanation"><%= h attr.description %></dd>
         </dl>
       <% end %>
     <% end %>
@@ -87,9 +90,9 @@
         <dl class="method">
           <dt class="name">
           <a name="<%= method.aref %>" ></a>
-          <%= method.name %><%= method.params %>
+          <%= h method.name %><%= h method.params %>
           </dt>
-          <dd class="explanation"><%= method.description %></dd>
+          <dd class="explanation"><%= h method.description %></dd>
         </dl>
       <% end %>
     <% end %>
@@ -101,9 +104,9 @@
         <dl class="method">
           <dt class="name">
           <a name="<%= method.aref %>" ></a>
-          <%= method.name %><%= method.params %>
+          <%= h method.name %><%= h method.params %>
           </dt>
-          <dd class="explanation"><%= method.description %></dd>
+          <dd class="explanation"><%= h method.description %></dd>
         </dl>
       <% end %>
     <% end %>

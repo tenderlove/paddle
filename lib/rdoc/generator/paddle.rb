@@ -28,7 +28,9 @@ class RDoc::Generator::Paddle
 
   def generate top_levels
     @files   = top_levels
-    @classes = RDoc::TopLevel.all_classes_and_modules
+    @classes = RDoc::TopLevel.all_classes_and_modules.reject { |x|
+      x.name =~ /[<>]/
+    }
 
     FileUtils.mkdir_p(File.join(@odir, class_dir))
 
@@ -55,6 +57,10 @@ class RDoc::Generator::Paddle
   end
 
   private
+  def h string
+    string.strip.gsub(/<pre>\s*<\/pre>/, '').gsub(/&/, '&amp;').gsub(/<</, '&lt;&lt;')
+  end
+
   def copy_images
     imgs = File.join @odir, 'images'
     FileUtils.mkdir_p imgs

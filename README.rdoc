@@ -1,6 +1,6 @@
 = paddle
 
-* FIX (url)
+* http://tenderlovemaking.com/
 
 == DESCRIPTION:
 
