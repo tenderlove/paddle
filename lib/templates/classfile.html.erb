@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>
+      <%= klass.name %>
+    </title>
+  </head>
+  <body>
+    <h1>
+      <% if klass.type == 'class' %>
+        <span class="class">
+          <%= klass.type.capitalize %>
+          <a href="<%= klass.path %>">
+            <%= klass.name %>
+          </a>
+          <% if klass.superclass %>
+            inherits from
+          <% end %>
+          <% unless String === klass.superclass %>
+            <a href="<%= klass.superclass.path %>">
+              <%= klass.superclass.name %>
+            </a>
+          <% else %>
+            <%= klass.superclass %>
+          <% end %>
+        </span>
+      <% else %>
+        <span class="module">
+          <%= klass.type.capitalize %>
+          <a href="<%= klass.path %>">
+            <%= klass.name %>
+          </a>
+        </span>
+      <% end %>
+    </h1>
+  </body>
+</html>

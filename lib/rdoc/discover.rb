@@ -1,0 +1,1 @@
+require 'rdoc/generator/paddle'

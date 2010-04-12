@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf"
+         version="2.0"
+         unique-identifier="internet">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:dcterms="http://purl.org/dc/terms/"
+            xmlns:opf="http://www.idpf.org/2007/opf"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dc:title><%= title %> Documentation</dc:title>
+    <dc:language xsi:type="dcterms:RFC3066">en</dc:language>
+    <dc:identifier id="dcidid" opf:scheme="URI">
+      <%= identifier %>
+    </dc:identifier>
+  </metadata>
+  <manifest>
+    <item id="ncx" href="toc.ncx" media-type="text/xml"/>
+    <item id="cover" href="doc/cover.html" media-type="application/xhtml+xml"/>
+    <item id="title" href="doc/title.html" media-type="application/xhtml+xml"/>
+    <item id="ruby" href="images/ruby.png" media-type="image/png"/>
+    <% @classes.each do |klass| %>
+      <item id="<%= MD5.hexdigest(klass.full_name) %>" href="<%= klass.path %>" media-type="application/xhtml+xml"/>
+    <% end %>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="cover"/>
+    <itemref idref="title"/>
+    <% @classes.sort_by { |x| x.full_name }.each do |klass| %>
+      <itemref idref="<%= MD5.hexdigest(klass.full_name) %>"/>
+    <% end %>
+  </spine>
+  <guide>
+    <reference type="cover" title="Cover" href="doc/cover.html" />
+  </guide>
+</package>
