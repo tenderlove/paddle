@@ -4,29 +4,41 @@
 
 == DESCRIPTION:
 
-FIX (describe your package)
+Paddle is an RDoc plugin that emits documentation suitable for use as an epub
+book.  The epub book can then be imported to iBooks for reading on iPad!
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* Converts RDoc to epub format
+* Sometimes it doesn't escape everything properly
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
+First, make sure to have the latest RDoc.  Install paddle, then rdoc your code
+like this:
+
+  $ rdoc -o epub -f paddle -t 'My Documentation' lib
+
+Next, convert the documentation to an epub file:
+
+  $ cd epub
+  $ zip -Xr9D mydocs.epub mimetype *
+
+Then drag "mydocs.epub" to iTunes, and sync up your iPad.
 
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* RDoc
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install rdoc
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2010 FIX
+Copyright (c) 2010 Aaron Patterson
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
