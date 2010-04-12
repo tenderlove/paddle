@@ -5,6 +5,19 @@
     <title>
       <%= klass.name %>
     </title>
+    <style>
+      dt, dd {
+        margin: 0;
+      }
+      dt.name {
+        float: left;
+      }
+      dd.explanation {
+        clear: both;
+        margin-bottom: 0.5em;
+        margin-left: 1.5em;
+      }
+    </style>
   </head>
   <body>
     <h1>
@@ -35,7 +48,65 @@
       <% end %>
     </h1>
     <% if klass.description && !klass.description.empty? %>
-      <%= klass.description %>
+      <div id="description" class="alt">
+        <%= klass.description.strip.gsub(/<pre>\s*<\/pre>/, '') %>
+      </div>
     <% end %>
+
+    <!-- Constants -->
+    <% unless klass.constants.empty? %>
+      <h3>Constants</h3>
+      <% klass.constants.sort_by { |x| x.name }.each do |const| %>
+        <dl>
+          <dt class="name">
+            <%= const.name %>
+          </dt>
+          <dd class="explanation"><%= const.description %></dd>
+        </dl>
+      <% end %>
+    <% end %>
+
+    <!-- Attributes -->
+    <% unless klass.attributes.empty? %>
+      <h3>Attributes</h3>
+      <% klass.attributes.sort_by { |x| x.name }.each do |attr| %>
+        <dl>
+          <dt class="name">
+            <%= attr.name %>
+            <span class="optional"><%= attr.rw %></span>
+          </dt>
+          <dd class="explanation"><%= attr.description.strip %></dd>
+        </dl>
+      <% end %>
+    <% end %>
+
+    <!-- Class Methods -->
+    <% unless klass_methods.empty? %>
+      <h3>Public Class Methods</h3>
+      <% klass_methods.each do |method| %>
+        <dl class="method">
+          <dt class="name">
+          <a name="<%= method.aref %>" ></a>
+          <%= method.name %><%= method.params %>
+          </dt>
+          <dd class="explanation"><%= method.description %></dd>
+        </dl>
+      <% end %>
+    <% end %>
+
+    <!-- Instance Methods -->
+    <% unless instance_methods.empty? %>
+      <h3>Public Instance Methods</h3>
+      <% instance_methods.each do |method| %>
+        <dl class="method">
+          <dt class="name">
+          <a name="<%= method.aref %>" ></a>
+          <%= method.name %><%= method.params %>
+          </dt>
+          <dd class="explanation"><%= method.description %></dd>
+        </dl>
+      <% end %>
+    <% end %>
+
   </body>
 </html>

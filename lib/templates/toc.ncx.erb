@@ -24,7 +24,7 @@
       </navLabel>
       <content src="doc/title.html"/>
     </navPoint>
-    <% @classes.each_with_index do |klass, i| %>
+    <% @classes.sort_by { |x| x.full_name }.each_with_index do |klass, i| %>
       <navPoint id="navPoint-<%= i + 3 %>" playOrder="<%= i + 3 %>">
         <navLabel>
           <text><%= klass.full_name %></text>

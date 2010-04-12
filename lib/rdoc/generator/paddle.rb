@@ -95,6 +95,18 @@ class RDoc::Generator::Paddle
 
   def emit_classfiles
     @classes.each do |klass|
+      klass_methods    = []
+      instance_methods = []
+
+      klass.method_list.each do |method|
+        next if 'private' == method.visibility.to_s
+        if method.type == 'class'
+          klass_methods << method
+        else
+          instance_methods << method
+        end
+      end
+
       template = ERB.new File.read(File.join(TEMPLATE_DIR, 'classfile.html.erb')),
         nil, '<>'
 
