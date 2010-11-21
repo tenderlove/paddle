@@ -58,7 +58,7 @@ class RDoc::Generator::Paddle
 
   private
   def h string
-    string.strip.gsub(/<pre>\s*<\/pre>/, '').gsub(/&/, '&amp;').gsub(/<</, '&lt;&lt;')
+    string.strip.gsub(/<pre>\s*<\/pre>/, '').gsub(/& /, '&amp; ').gsub(/<</, '&lt;&lt;')
   end
 
   def copy_images
