@@ -19,6 +19,8 @@ class RDoc::Generator::Paddle
 
   def initialize options
     @options   = options
+    @title     = options.title.split(';')[0]
+    @author    = options.title.split(';')[1]
     @class_dir = nil
     @file_dir  = nil
     @odir      = Pathname.new(options.op_dir).expand_path(Pathname.pwd)
@@ -49,7 +51,11 @@ class RDoc::Generator::Paddle
   end
 
   def title
-    @options.title
+    @title
+  end
+
+  def author
+    @author
   end
 
   def identifier
@@ -58,7 +64,7 @@ class RDoc::Generator::Paddle
 
   private
   def h string
-    string.strip.gsub(/<pre>\s*<\/pre>/, '').gsub(/&/, '&amp;').gsub(/<</, '&lt;&lt;')
+    string.strip.gsub(/<pre>\s*<\/pre>/, '').gsub(/& /, '&amp; ').gsub(/<</, '&lt;&lt;')
   end
 
   def copy_images
